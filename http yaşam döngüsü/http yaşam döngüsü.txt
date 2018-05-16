@@ -1,0 +1,34 @@
+Genel HTTP Yaþam Döngüsü
+HTTP(Hyper Text Transfer Protocol):HTTP protokolü að üzerinden web sayfalarýnýn görüntülenmesini
+saðlayan protokoldür. HTTP protokolü istemci (PC) ile sunucu (server) arasýndaki alýþveriþ 
+kurallarýný belirler. 
+1. Girilen domain IP adresine çevrilir (DNS) 
+2. IP adresine TCP baðlantýsý (request) açýlýr 
+3. Server cevap (response) döner 
+4. Cevap render edilir
+
+Domainin IP ‘ye çevrilmesi (DNS): Tarayýcýya girilen domain (örneðin: www.google.com.tr)
+DNS sunucularýna sorularak IP adresi bulunur. Eðer tarayýcý daha önce DNS sorgulamasý 
+yaptýysa ayný domaine istek yapýldýðýnda DNS sorgusu tekrar yapýlmaz. Bu, websitesi hýz 
+testlerinde -bir sayfada farklý domainlere yapýlan istekler için- DNS lookup time kriteri 
+olarak önümüze çýkar.
+
+IP adresine TCP isteði (request) Bulunan IP adresine TCP baðlantýsý açýlýp (request) girilen 
+domain host header’ý ile gönderilir Bu örnek için gönderilecek bilgiler aþaðýdaki gibidir;
+ GET / HTTP/1.1 
+ Host: www.google.com 
+Burada kullanýcýnýn istediði sayfa anasayfa olduðundan “/” parametresi GET metodu ile gönderilmiþtir.
+
+Server ‘ýn cevabý (response) IP adresinde bulunan server, isteði iþleyip cevap (response) döner. 
+Server bu isteði iþlerken port bilgisine bakarak ilgili web sunucusuna (iis, apache, nginx) 
+yönlendirir. Web sunucusu gelen host header’ý ile hangi siteyi çalýþtýracaðýna karar verip 
+ilgili sitenin kodunu iþletir.
+
+Cevabýn ekrana basýlmasý (render) Cevabý alan browser gelen cevabý ekrana basar (render). 
+Browser render iþleminde html ile layout’u, css ile tasarýmý (renk, imaj vd) oluþturur. 
+Javascript ise yukarýdaki iþlemler yapýldýktan sonra hem css hem html üzerinde (DOM) 
+deðiþiklikler yaparak sayfaya dinamik bir yapý kazandýrýr.
+
+Örnek HTTP GET Request http://www.example.com/ URL ‘i için http isteði aþaðýdaki gibidir;
+ GET /index.html HTTP/1.1
+ Host: www.example.com
